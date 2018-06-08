@@ -1,10 +1,28 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ShapeDemo {
     public static void main(String[] args) throws InstantiationException {
-        List<Shape> shapes = new ArrayList<Shape>();
-        Shape s1 = new Square(1, 1);
+        List<Shape> shapes = new LinkedList<>();
+
+
+        Shape s1 = null;
+        try {
+            s1 = new Square(5, 6);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }catch (RuntimeException e2){
+            e2.printStackTrace();
+            s1 = new Rectangle(1, 2);
+        }catch (Exception e3) {
+            s1 = new Circle(1);
+        }finally{
+            System.out.println("Finally! We're done with all this!");
+        }
+
+
+
         Shape s2 = new Rectangle(2, 1);
         Shape s3 = new Circle(3);
         shapes.add(s1);
@@ -27,14 +45,13 @@ public class ShapeDemo {
         Point newPoint = new Point(1,2);
         List<Object> objects = new ArrayList<Object>();
         objects.add(newPoint);
-        Shape.printObjectAreas((new ArrayList<Object>(objects)));
 
 
         //Step 3: Using print method with shapes. How does this compare to the previous steps?
         Shape.printShapeAreas(shapes);
 
         //Step 4: Using a Generic method. How does this compare to the previous steps?
-        Shape.<Square>printGenericAreas(squares);
+        Shape.<Circle>printGenericAreas(circles);
 
         try{
             Shape.printObjectAreas(objects);

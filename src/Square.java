@@ -8,6 +8,8 @@ public class Square extends Rectangle implements IPricer {
     super(length, width);
     if (length == width) {
       this.size = length;
+    } else if (length == 5) {
+      throw new RuntimeException("Can't create dude! This square is too big!!");
     } else {
       throw new InstantiationException("this is not a square");
     }
